@@ -47,4 +47,28 @@ h1 {
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius : 50%;
+    object-fit: cover;
+}
+
+.photographer__details {
+    display : flex;
+    flex-flow: column nowrap;
+    margin-top : -20px;
+}
+.photographer__details span {
+    display :block;
+    text-align: center;
+}
+
+.photographer__hometown {
+    color : #901C1C;
+    font-size : 18px;
+    line-height : 1.8rem;
+}
+
+.photographer__price {
+    color :#7a7a7a;
+    line-height : 1.8rem;
+    font-size : 13px;
 }
