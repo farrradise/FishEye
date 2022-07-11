@@ -5,8 +5,10 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = `<article class="photographer" id="${id}">
-                            <img src="assets/photographers/${portrait}">
-                            <h2>${name}</h2>
+                            <a class="photographer__clickable" href="" alt="${name}">
+                                <img src="assets/photographers/${portrait}">
+                                <h2>${name}</h2>
+                            </a>
                             <p class="photographer__details">
                                 <span class="photographer__hometown">${city}, ${country}</span>
                                 <span class="photographer__tagline">${tagline}</span>
@@ -14,27 +16,11 @@ function photographerFactory(data) {
                             </p>
                         </article>`;
                             
-        // const article = document.createElement( 'article' );
-        // article.classList.add('photographer');
-        // const img = document.createElement( 'img' );
-        // img.setAttribute("src", picture)
-        // const h2 = document.createElement( 'h2' );
-        // h2.textContent = name;
-        // article.appendChild(img);
-        // article.appendChild(h2);
-        console.log(article);
+   
         return (article);
     }
 
     return { name, picture, getUserCardDOM }
-
-
-
-
-
-    // créer les variables (constructeur)
-
-    // creer fonction qui genere une carte html
     
 
 
