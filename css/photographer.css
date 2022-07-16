@@ -6,7 +6,27 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding : 0 30px;
+    display : flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between; 
 }
+
+
+.photograph-header figure {
+    width : 180px;
+    height : 180px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.photograph-header img {
+    object-fit: cover;
+    width : 100%;
+}
+
+
 
 .contact_button {
     font-size: 20px;
