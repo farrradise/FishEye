@@ -7,10 +7,10 @@ async function displayData(photographersData) {
 
         // const photographerModel = photographerView(photographerData);
                 
-        const photographerModel = new PhotographerCard(photographerData);
+        const photographerModel = new Photographer(photographerData);
 
         // const userCardDOM = photographerModel.getUserCardDOM();
-        const userCardDOM = photographerModel.photographerTemplate();
+        const userCardDOM = photographerModel.photographerCard();
 
 
         photographersSection.innerHTML += userCardDOM;
