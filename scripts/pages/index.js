@@ -1,18 +1,14 @@
-// import photographerFactory from '..factories/photographer.js';
+// import Photographer from '../views/Photographer.js'
+import Card from '../views/photograph/Card.js'
 
 async function displayData(photographersData) {
 
     const photographersSection = document.querySelector(".photographer_section");
+
     photographersData.forEach((photographerData) => {
 
-        // const photographerModel = photographerView(photographerData);
-                
-        const photographerModel = new Photographer(photographerData);
-
-        // const userCardDOM = photographerModel.getUserCardDOM();
-        const userCardDOM = photographerModel.photographerCard();
-
-
+        const photographerModel = new Card(photographerData);
+        const userCardDOM = photographerModel.render();
         photographersSection.innerHTML += userCardDOM;
     });
 };

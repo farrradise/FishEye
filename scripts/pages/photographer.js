@@ -1,29 +1,33 @@
-//Mettre le code JavaScript lié à la page photographer.html
-let params = (new URL(document.location)).searchParams;
-let currentID = parseInt(params.get('id'));
+import Header from '../views/photograph/Header.js'
+import {closeModal, displayModal} from '../utils/contactForm.js'
+
 const main = document.querySelector("#main");
+
+
+function getID() {
+  let params = (new URL(document.location)).searchParams;
+  return parseInt(params.get('id'));
+}
 
 
 
 async function displayHeader(photographerDatas) {
+  console.log(photographerDatas);
 
-  try {
-    const photograph = new Photographer(photographerDatas);
-    const header = photograph.photographerSingleHeader();
+    const photograph = new Header(photographerDatas);
+    const header = photograph.render();
     main.innerHTML += header;
-  } catch (e) {
-    console.log('an error occurs', e);
-  }
+
+
 };
 
 
 
 async function displayWork(photographerWorks) {
-  console.log('le travail du photographe', photographerWorks)
   photographerWorks.forEach((media) => {
     console.log(media);
+    main.innerHTML += media.title + " <br>";
   });
-  main.innerHTML += 'coucou';
 
 }
 
@@ -32,7 +36,7 @@ async function displayWork(photographerWorks) {
 const getPhotographer = fetch("./data/photographers.json")
   .then((response) => response.json())
   .then((value) => {
-    const selectedPhotographer = value.photographers.filter(photographer => photographer.id == currentID); 
+    const selectedPhotographer = value.photographers.filter(photographer => photographer.id == getID()); 
     return selectedPhotographer[0];
   });
 
@@ -40,7 +44,7 @@ const getPhotographer = fetch("./data/photographers.json")
 const getWork = fetch("./data/photographers.json")
 .then((response) => response.json())
 .then((value) => {
-  return value.media.filter(singleMedia => singleMedia.photographerId == currentID);
+  return value.media.filter(singleMedia => singleMedia.photographerId == getID());
 });
 
 
@@ -49,7 +53,8 @@ const getWork = fetch("./data/photographers.json")
 const start = async () => {
   const photographerData = await getPhotographer;
   const workData = await getWork;
-  // console.log('i did it, il sagit de ', workData)
+
+
   displayHeader(photographerData);
   displayWork(workData);
 };
