@@ -6,7 +6,7 @@ import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import {closeModal, displayModal} from '../utils/contactForm.js'
 
-const main = document.querySelector("#main");
+const $main = document.querySelector("#main");
 
 
 function getID() {
@@ -19,7 +19,7 @@ function getID() {
 async function displayHeader(photographerDatas) {
     const photograph = new Header(photographerDatas);
     const header = photograph.render();
-    main.innerHTML += header;
+    $main.innerHTML += header;
 
 
 };
@@ -34,10 +34,15 @@ async function displayWork(photographerWorks) {
   works.forEach(work => {
     const cardMedia = new Card(work)
     portfolio.innerHTML += cardMedia.render();
+    
   });
   
-  main.appendChild(portfolio)
 
+  $main.appendChild(portfolio)
+  const $hearts = document.querySelectorAll(".media__likes i");
+  $hearts.forEach(heart => heart.addEventListener("click", e => addLike(e.target, works)));
+    // David interessant fonction fléchée le this n'existe pas 
+  // $hearts.forEach(heart => heart.addEventListener('click', addLike(heart)));
 }
 
 
@@ -47,8 +52,24 @@ function displayRecap(photographerData, workData) {
   const recap = new Recap(photographerData.price, likes);
   // console.log(recap.render);
 
-  main.innerHTML += recap.render();
+  $main.innerHTML += recap.render();
 
+}
+
+function addLike($heart, works) {
+
+  const $card = $heart.closest(".media__card");
+  const $heartNb = $heart.previousElementSibling;
+  const $cardID = $card.getAttribute('data-id');
+
+  works.forEach(work => {
+    if (work.id == $cardID) {
+        work.likes = 1;
+        // console.log("ça fait", work.likes);
+        $heartNb.innerHTML = work.likes;
+    }
+  });
+  // console.log($cardID);
 }
 
 

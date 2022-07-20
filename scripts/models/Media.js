@@ -9,8 +9,6 @@ export default class Media {
         this._title = data.title;
         this._media;
         this._name;
-        // trouver solution pour stocker image ou video
-        // this.name = data.
     }
 
     // pour david question si jenleve le underscore et que je garde les getters gros soucis, je pensais qu'il sagissait simplement d'une convention
@@ -32,6 +30,10 @@ export default class Media {
 
     get likes() {
         return this._likes;
+    }
+
+    set likes(add) {
+        this._likes += add;
     }
 
     get price() {

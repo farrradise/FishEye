@@ -8,7 +8,7 @@ export default class Card  {
 
 
     render() {
-        return `<div class="media__card media__id--${this.media.id}">
+        return `<div class="media__card" data-id="${this.media.id}">
             <a href="" class="media__link">
                 ${this.media.name}
             </a>

@@ -40,6 +40,8 @@
 
 .media__likes {
     flex-shrink :0;
+    border :1px solid red;
+    cursor: pointer;
 }
 
 .media__title {
