@@ -1,11 +1,9 @@
-export default class Header {
+import Photograph from '../../models/Photograph.js'
+
+export default class Header extends Photograph {
     
     constructor(data) {
-        this.name = data.name;
-        this.portrait = data.portrait;
-        this.city = data.city;
-        this.country = data.country;
-        this.tagline = data.tagline;
+        super(data);
     }
 
 

@@ -1,14 +1,11 @@
-export default class Card {
+import Photograph from '../../models/Photograph.js'
+
+export default class Card extends Photograph {
     
-    constructor(data) {
-        this.name = data.name;
-        this.portrait = data.portrait;
-        this.city = data.city;
-        this.country = data.country;
-        this.tagline = data.tagline;
-        this.id = data.id;
-        this.price = data.price;
+    constructor (data) {
+        super(data)
     }
+
 
 
  render() {

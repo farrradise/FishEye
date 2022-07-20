@@ -1,4 +1,8 @@
+import MediaFactory from '../factories/MediasFactory.js'
+import Video from '../models/Video.js'
+import Image from '../models/Image.js'
 import Header from '../views/photograph/Header.js'
+import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import {closeModal, displayModal} from '../utils/contactForm.js'
 
@@ -25,10 +29,17 @@ async function displayHeader(photographerDatas) {
 async function displayWork(photographerWorks) {
   const portfolio = document.createElement('div');
   portfolio.setAttribute("class", "media");
-  
-  photographerWorks.forEach((mediaDatas) => {
-    const cardMedia = new Card(mediaDatas)
-    console.log(cardMedia);
+  const works = photographerWorks.map(work => new MediaFactory(work));
+  // console.log(works)
+  works.forEach(work => {
+    const cardMedia = new Card(work)
+    try {
+      console.log("coucou",cardMedia.render());
+      // console.log('coucou',work)
+
+    } catch (e) {
+      console.log("merci de mexpliquer ", e);
+    }
     portfolio.innerHTML += cardMedia.render();
     // portfolio.innerHTML += mediaDatas.title + " <br>";
   });
@@ -37,6 +48,16 @@ async function displayWork(photographerWorks) {
 
 }
 
+
+function displayRecap(photographerData, workData) {
+  let likes = 0
+  workData.forEach(singleWork => likes += singleWork.likes)
+  const recap = new Recap(photographerData.price, likes);
+  // console.log(recap.render);
+
+  main.innerHTML += recap.render();
+
+}
 
 
 const getPhotographer = fetch("./data/photographers.json")
@@ -50,6 +71,7 @@ const getPhotographer = fetch("./data/photographers.json")
 const getWork = fetch("./data/photographers.json")
 .then((response) => response.json())
 .then((value) => {
+  // console.log(value.media);
   return value.media.filter(singleMedia => singleMedia.photographerId == getID());
 });
 
@@ -62,6 +84,7 @@ const start = async () => {
 
 
   displayHeader(photographerData);
+  displayRecap(photographerData, workData);
   displayWork(workData);
 };
 

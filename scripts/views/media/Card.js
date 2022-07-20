@@ -1,25 +1,21 @@
-export default class Card {
+import Media from "../../models/Media.js";
+
+export default class Card  {
     
-    constructor(data) {
-        this.date = data.date;
-        this.id = data.id;
-        this.likes = data.likes;
-        // this.photographerId = data.photographerId;
-        this.price = data.price;
-        this.title = data.title;
-        // this.price = data.price;
+    constructor(media) {
+        this.media = media;
     }
 
 
     render() {
-        return `<div class="media__card">
+        return `<div class="media__card media__id--${this.media.id}">
             <a href="" class="media__link">
-                <img src="" class="media__img">
+                ${this.media.name}
             </a>
             <div class="media__details">
-                <h4 class="media__title">${this.title}</h4>
+                <h4 class="media__title">${this.media.title}</h4>
                 <div class="media__likes">
-                    <span>${this.likes}</span>
+                    <span>${this.media.likes}</span>
                     <i class="fa-solid fa-heart"></i>
                 </div>
             </div>

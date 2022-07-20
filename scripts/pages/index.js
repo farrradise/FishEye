@@ -1,4 +1,5 @@
 // import Photographer from '../views/Photographer.js'
+// import Photograph from '../factories/Photograph.js'
 import Card from '../views/photograph/Card.js'
 
 async function displayData(photographersData) {
@@ -8,6 +9,8 @@ async function displayData(photographersData) {
     photographersData.forEach((photographerData) => {
 
         const photographerModel = new Card(photographerData);
+        // const photographerModel = new Photograph(photographerData);
+        // console.log(photographerModel);
         const userCardDOM = photographerModel.render();
         photographersSection.innerHTML += userCardDOM;
     });
