@@ -30,18 +30,10 @@ async function displayWork(photographerWorks) {
   const portfolio = document.createElement('div');
   portfolio.setAttribute("class", "media");
   const works = photographerWorks.map(work => new MediaFactory(work));
-  // console.log(works)
+
   works.forEach(work => {
     const cardMedia = new Card(work)
-    try {
-      console.log("coucou",cardMedia.render());
-      // console.log('coucou',work)
-
-    } catch (e) {
-      console.log("merci de mexpliquer ", e);
-    }
     portfolio.innerHTML += cardMedia.render();
-    // portfolio.innerHTML += mediaDatas.title + " <br>";
   });
   
   main.appendChild(portfolio)
