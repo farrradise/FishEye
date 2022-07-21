@@ -6,14 +6,17 @@ import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import {closeModal, displayModal} from '../utils/contactForm.js'
 
-const $main = document.querySelector("#main");
 
+
+
+const $main = document.querySelector("#main");
+let photographerData;
+let workData;
 
 function getID() {
   let params = (new URL(document.location)).searchParams;
   return parseInt(params.get('id'));
 }
-
 
 
 async function displayHeader(photographerDatas) {
@@ -27,18 +30,26 @@ async function displayHeader(photographerDatas) {
 
 
 async function displayWork(photographerWorks) {
-  const portfolio = document.createElement('div');
-  portfolio.setAttribute("class", "media");
+  
+  if (document.querySelector(".media")) {
+    console.log('cest rentré dans la ocnfition je dois supprimé linterieur avec remove');
+    document.querySelector(".media").remove();
+  }
+
+  const $portfolio = document.createElement('div');
+  $portfolio.setAttribute("class", "media");
   const works = photographerWorks.map(work => new MediaFactory(work));
 
   works.forEach(work => {
     const cardMedia = new Card(work)
-    portfolio.innerHTML += cardMedia.render();
+    $portfolio.innerHTML += cardMedia.render();
     
   });
   
 
-  $main.appendChild(portfolio)
+  $main.appendChild($portfolio)
+
+
   const $hearts = document.querySelectorAll(".media__likes i");
   $hearts.forEach(heart => heart.addEventListener("click", e => addLike(e.target, works)));
     // David interessant fonction fléchée le this n'existe pas 
@@ -92,8 +103,8 @@ const getWork = fetch("./data/photographers.json")
 
 
 const start = async () => {
-  const photographerData = await getPhotographer;
-  const workData = await getWork;
+  photographerData = await getPhotographer;
+  workData = await getWork;
 
 
   displayHeader(photographerData);
@@ -102,3 +113,39 @@ const start = async () => {
 };
 
 start();
+
+
+// Pour ouvrir le dropdown filter
+const $triBtn = document.querySelector(".filter__choice");
+$triBtn.addEventListener("click", filter);
+
+
+function filter (e) {
+
+  document.querySelector('.filter__options').classList.toggle("open");
+  const triOption = e.target.dataset.value;
+  
+  switch (triOption) {
+    case "undefined":
+      console.log("no, no no");
+      break;
+
+    case "likes":
+      workData.sort(function (a, b) {
+        return a.likes - b.likes;
+      });
+      console.log(workData);
+      displayWork(workData);
+      break;
+
+    case "date":
+      console.log("date");
+      break;
+
+    case "title":
+      console.log("title");
+      break;
+  }
+
+}
+

@@ -17,6 +17,7 @@ export default class Card  {
                 <div class="media__likes">
                     <span>${this.media.likes}</span>
                     <i class="fa-solid fa-heart"></i>
+                    ${this.media.date}
                 </div>
             </div>
         </div>`

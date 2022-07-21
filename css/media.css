@@ -15,6 +15,10 @@
     margin-bottom : 50px; 
 }
 
+.media__card:last-child{
+    /* margin-right: auto; */
+}
+
 .media__details {
     display :flex; 
     flex-flow : row nowrap;
