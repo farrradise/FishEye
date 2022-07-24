@@ -3,7 +3,7 @@
     margin : 50px 100px 0;
     display : flex;
     flex-flow : row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 
 }
 
@@ -15,8 +15,8 @@
     margin-bottom : 50px; 
 }
 
-.media__card:last-child{
-    /* margin-right: auto; */
+.media__card:not(:nth-child(3n)){
+    margin-right: 5%;
 }
 
 .media__details {

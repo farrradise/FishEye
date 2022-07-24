@@ -27,7 +27,7 @@
 
 
 .filter__button i {
-    z-index: 10;
+    z-index: 5;
     position: relative;
     transition: transform 0.3s ease-in-out;
 }

@@ -1,0 +1,5 @@
+.modal {
+    border :1px solid red;
+    position : absolute;
+    top: 0px;
+}

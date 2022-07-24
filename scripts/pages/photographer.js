@@ -5,15 +5,14 @@ import Header from '../views/photograph/Header.js'
 import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import Filter from '../views/Filter.js'
-import {closeModal, displayModal} from '../utils/contactForm.js'
-
+import {closeModal, displayModal, test} from '../utils/contactForm.js'
 
 
 
 const $main = document.querySelector("#main");
 let photographerData;
 let workData;
-
+window.displayModal= displayModal;
 function getID() {
   let params = (new URL(document.location)).searchParams;
   return parseInt(params.get('id'));
@@ -123,6 +122,8 @@ const start = async () => {
   displayRecap(photographerData, workData);
   displayFilter();
   displayWork(workData);
+
+  // document.querySelector(".contact_button").addEventListener("click", displayModal);
 
 
 };

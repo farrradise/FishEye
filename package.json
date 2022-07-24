@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farrradise/FishEye.git"
+  },
+  "bugs": {
+    "url": "https://github.com/farrradise/FishEye/issues"
+  },
+  "homepage": "https://github.com/farrradise/FishEye#readme"
+}

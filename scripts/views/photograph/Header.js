@@ -1,4 +1,5 @@
 import Photograph from '../../models/Photograph.js'
+// import {displayModal, closeModal} from '../../utils/contactForm.js'
 
 export default class Header extends Photograph {
     
@@ -21,10 +22,11 @@ export default class Header extends Photograph {
             </div>
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
             <figure>
-                <img src="assets/photographers/${this.portrait}">
+            <img src="assets/photographers/${this.portrait}">
             </figure>
-        </div>`
-        
+            </div>`
+            
+            // <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         
         return header;
 
