@@ -8,7 +8,7 @@ export default class MediaFactory {
         } else if (data.video !== undefined) {
             return new Video(data);
         } else {
-            return "it is a problemoooo"
+            return "type image ou video non défini"
         }
 
     }

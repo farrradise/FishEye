@@ -20,7 +20,7 @@ export default class Header extends Photograph {
                 
                 </p>
             </div>
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            <button class="contact_button">Contactez-moi</button>
             <figure>
             <img src="assets/photographers/${this.portrait}">
             </figure>

@@ -1,18 +1,17 @@
 import MediaFactory from '../factories/MediasFactory.js'
-import Video from '../models/Video.js'
-import Image from '../models/Image.js'
 import Header from '../views/photograph/Header.js'
 import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import Filter from '../views/Filter.js'
-import {closeModal, displayModal, test} from '../utils/contactForm.js'
+import {closeModal, displayModal} from '../utils/contactForm.js'
 
 
 
 const $main = document.querySelector("#main");
 let photographerData;
 let workData;
-window.displayModal= displayModal;
+
+
 function getID() {
   let params = (new URL(document.location)).searchParams;
   return parseInt(params.get('id'));
@@ -44,7 +43,6 @@ async function displayFilter() {
 async function displayWork(photographerWorks) {
   
   if (document.querySelector(".media")) {
-    // console.log('cest rentré dans la ocnfition je dois supprimé linterieur avec remove');
     document.querySelector(".media").remove();
   }
 
@@ -84,15 +82,26 @@ function addLike($heart, works) {
   const $card = $heart.closest(".media__card");
   const $heartNb = $heart.previousElementSibling;
   const $cardID = $card.getAttribute('data-id');
+  const isAlreadyLiked = $card.getAttribute('data-liked');
+  const $recapLikes = document.querySelector(".recap__likes span");
 
+  
   works.forEach(work => {
     if (work.id == $cardID) {
-        work.likes = 1;
-        // console.log("ça fait", work.likes);
+        
+        if (isAlreadyLiked == "true") {
+          work.likes = -1;
+          $card.dataset.liked = "false"
+          $recapLikes.textContent = parseInt($recapLikes.textContent) -1;
+        } else {
+          work.likes = 1;
+          $card.dataset.liked = "true"
+          $recapLikes.textContent = parseInt($recapLikes.textContent) + 1;
+        }
+            
         $heartNb.innerHTML = work.likes;
     }
   });
-  // console.log($cardID);
 }
 
 
@@ -123,7 +132,10 @@ const start = async () => {
   displayFilter();
   displayWork(workData);
 
-  // document.querySelector(".contact_button").addEventListener("click", displayModal);
+
+  // Events
+  document.querySelector(".contact_button").addEventListener("click", () => displayModal());
+  document.querySelector(".modal__closeBtn").addEventListener("click", () => closeModal());
 
 
 };

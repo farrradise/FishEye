@@ -11,8 +11,12 @@
 .media__card {
     width : 30%;
     box-sizing: border-box;
-    /* border : 1px solid red; */
     margin-bottom : 50px; 
+}
+
+
+.media__card[data-liked="true"] i {
+    color : #D3573C;
 }
 
 .media__card:not(:nth-child(3n)){
@@ -35,7 +39,6 @@
 }
 
 .media__img {
-    /* border : 1px solid red; */
     width : 100%;
     height : 100%;
     object-fit: cover;
@@ -44,7 +47,6 @@
 
 .media__likes {
     flex-shrink :0;
-    border :1px solid red;
     cursor: pointer;
 }
 
