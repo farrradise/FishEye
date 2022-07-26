@@ -19,23 +19,38 @@
     
     
     <div class="modal" id="contact_modal">
-			<!-- <div class="modal"> -->
+			<div class="modal__container">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg"/ class="modal__closeBtn">
+          <h2>Contactez-moi <span></span></h2>
+          <img src="assets/icons/close.svg" class="modal__closeBtn"/>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+				<form class="modal__form">
+					<div class="modal__firstName">
+						<label for="firstName">Prénom
+						  <input id="firstName" type="text" />
+            </label>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div  class="modal__lastName">
+						<label for="lastName">Nom
+              <input id="lastName" type="text"/>
+            </label>
+					</div>
+          <div class="modal__email">
+						<label for="email">Email
+              <input id="email" type="email"/>
+            </label>
+					</div>
+          <div class="modal__message">
+						<label for="message">Votre Message
+              <textarea id="message" type="text">
+              </textarea>
+            </label>
+					</div>
+          <button class="modal__submit contact_button">Envoyer</button>
 				</form>
-			<!-- </div> -->
+			</div>
 		</div>
     <script src="https://kit.fontawesome.com/0fa88dc263.js" crossorigin="anonymous"></script>
     <script src="/scripts/pages/photographer.js" type="module"></script>
-    <!-- <script src="/scripts/utils/contactForm.js" type="module"></script> -->
-    <!-- <script src="/scripts/utils/likes.js" type="module"></script> -->
   </body>
 </html>

@@ -1,14 +1,14 @@
 function displayModal() {
     const $modal = document.getElementById("contact_modal");
-
-	$modal.style.display = "block";
+    $modal.classList.add("open");
+    setTimeout(() => $modal.querySelector(".modal__container").classList.add("open"), 0);
 }
 
 function closeModal() {
     const $modal = document.getElementById("contact_modal");
-    $modal.style.display = "none";
+    $modal.querySelector(".modal__container").classList.remove("open")
+    setTimeout(() =>     $modal.classList.remove("open"), 1000);
 }
 
 
 export {closeModal, displayModal};
-// export avec cette syntaxe not working
