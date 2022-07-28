@@ -3,7 +3,7 @@ import Header from '../views/photograph/Header.js'
 import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import Filter from '../views/Filter.js'
-import {closeModal, displayModal} from '../utils/contactForm.js'
+import {closeModal, displayModal, checkDatas} from '../utils/contactForm.js'
 
 
 
@@ -37,7 +37,6 @@ async function displayFilter() {
   $triBtn.addEventListener("click", tri);
   // david smooth, attendre que tout soit prêt inserer un loader en attendant
 };
-
 
 
 async function displayWork(photographerWorks) {
@@ -105,26 +104,10 @@ function addLike($heart, works) {
 }
 
 
-const getPhotographer = fetch("./data/photographers.json")
-  .then((response) => response.json())
-  .then((value) => {
-    const selectedPhotographer = value.photographers.filter(photographer => photographer.id == getID()); 
-    return selectedPhotographer[0];
-  });
-
-
-const getWork = fetch("./data/photographers.json")
-.then((response) => response.json())
-.then((value) => {
-  return value.media.filter(singleMedia => singleMedia.photographerId == getID());
-});
-
-
-
-
 const start = async () => {
   photographerData = await getPhotographer;
   workData = await getWork;
+  
 
 
   displayHeader(photographerData);
@@ -136,15 +119,10 @@ const start = async () => {
   // Events
   document.querySelector(".contact_button").addEventListener("click", () => displayModal());
   document.querySelector(".modal__closeBtn").addEventListener("click", () => closeModal());
+  document.querySelector ('.modal__submit').addEventListener("click", (e) => checkDatas(e));
 
 
 };
-
-start();
-
-
-
-
 
 function tri(e) {
 
@@ -185,4 +163,27 @@ function tri(e) {
     document.querySelector("#tri span").innerHTML = e.target.textContent;
   } 
 }
+
+
+const getPhotographer = fetch("./data/photographers.json")
+  .then((response) => response.json())
+  .then((value) => {
+    const selectedPhotographer = value.photographers.filter(photographer => photographer.id == getID()); 
+    return selectedPhotographer[0];
+  });
+
+
+const getWork = fetch("./data/photographers.json")
+.then((response) => response.json())
+.then((value) => {
+  return value.media.filter(singleMedia => singleMedia.photographerId == getID());
+});
+
+
+
+
+
+
+
+start();
 

@@ -10,5 +10,19 @@ function closeModal() {
     setTimeout(() =>     $modal.classList.remove("open"), 1000);
 }
 
+function checkDatas(event) {
+    event.preventDefault();
 
-export {closeModal, displayModal};
+    const firstName = document.querySelector('#firstName').value;
+    const lastName = document.querySelector('#lastName').value;
+    const email = document.querySelector('#email').value;
+    const message = document.querySelector('#message').value;
+    
+    console.log("Prénom : ", firstName);
+    console.log("Nom : ", lastName);
+    console.log("Email : ", email);
+    console.log("Votre message : ", message);
+
+}
+
+export {closeModal, displayModal, checkDatas};
