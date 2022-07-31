@@ -9,7 +9,7 @@ export default class Card  {
 
     render() {
         return `<div class="media__card" data-liked="false" data-id="${this.media.id}">
-            <a href="" class="media__link">
+            <a href="#" class="media__link">
                 ${this.media.name}
             </a>
             <div class="media__details">
@@ -20,5 +20,17 @@ export default class Card  {
                 </div>
             </div>
         </div>`
+    }
+
+    renderSlide() {
+        return `      
+            
+            <div class="lightbox__card" data-slide="${this.media.id}">
+                ${this.media.name}
+                <h4 class="lightbox__title">${this.media.title}</h4>
+            </div>
+            `
+
+
     }
 }

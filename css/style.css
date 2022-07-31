@@ -3,6 +3,7 @@
 @import url("filter.css");
 @import url("recap.css");
 @import url("modal.css");
+@import url("lightbox.css");
 
 body {
     font-family: "DM Sans", sans-serif;

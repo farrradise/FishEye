@@ -4,13 +4,14 @@ import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import Filter from '../views/Filter.js'
 import {closeModal, displayModal, checkDatas} from '../utils/contactForm.js'
+import slider from '../utils/slider.js'
 
 
 
 const $main = document.querySelector("#main");
 let photographerData;
 let workData;
-
+let works;
 
 function getID() {
   let params = (new URL(document.location)).searchParams;
@@ -35,7 +36,6 @@ async function displayFilter() {
   // Pour ouvrir le dropdown filter
   const $triBtn = document.querySelector(".filter__choice");
   $triBtn.addEventListener("click", tri);
-  // david smooth, attendre que tout soit prêt inserer un loader en attendant
 };
 
 
@@ -47,7 +47,7 @@ async function displayWork(photographerWorks) {
 
   const $portfolio = document.createElement('div');
   $portfolio.setAttribute("class", "media");
-  const works = photographerWorks.map(work => new MediaFactory(work));
+  works = photographerWorks.map(work => new MediaFactory(work));
 
   works.forEach(work => {
     const cardMedia = new Card(work)
@@ -60,7 +60,9 @@ async function displayWork(photographerWorks) {
 
 
   const $hearts = document.querySelectorAll(".media__likes i");
+  const $medias = document.querySelectorAll('.media__link');
   $hearts.forEach(heart => heart.addEventListener("click", e => addLike(e.target, works)));
+  $medias.forEach( media => media.addEventListener("click", (e) => slider(e, works)));
     // David interessant fonction fléchée le this n'existe pas 
   // $hearts.forEach(heart => heart.addEventListener('click', addLike(heart)));
 }
@@ -101,6 +103,7 @@ function addLike($heart, works) {
         $heartNb.innerHTML = work.likes;
     }
   });
+
 }
 
 
@@ -119,8 +122,7 @@ const start = async () => {
   // Events
   document.querySelector(".contact_button").addEventListener("click", () => displayModal());
   document.querySelector(".modal__closeBtn").addEventListener("click", () => closeModal());
-  document.querySelector ('.modal__submit').addEventListener("click", (e) => checkDatas(e));
-
+  document.querySelector('.modal__submit').addEventListener("click", (e) => checkDatas(e));
 
 };
 

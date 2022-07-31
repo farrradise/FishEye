@@ -1,0 +1,89 @@
+.lightbox {
+    /* border: 3px solid red; */
+    /* display: block!important; */
+    background-color: white;
+}
+
+.lightbox.open {
+    display : block;
+}
+
+.lightbox__container {
+    top: 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    position : absolute;
+    border : 3px solid red;
+    max-width: 90%;
+    width : 1000px;
+    margin: auto; 
+    height : 80vh;
+    max-height : 600px;
+    /* 
+    border-radius: 5px;
+    background-color: #DB8876;
+    box-shadow: 1px 0px 6px darkgrey;
+    max-height: 95vh;
+    overflow-y: scroll;
+    display: flex;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    justify-content: space-between;
+    padding: 35px;
+    */
+
+}
+
+.lightbox__controls {
+    position : absolute;
+    /* border : 3px solid green; */
+    height : 100%;
+    width : 100%;
+    z-index :20;
+}
+
+.lightbox__slider {
+    border :3px solid pink;
+    width : 90%;
+    height : 100%;
+    margin : auto;
+    z-index:3;
+}
+
+.lightbox__card {
+    border :2px solid black;
+    height: 100%;
+}
+
+
+.lightbox__title {
+    color : #901C1C;
+} 
+.lightbox img {
+    object-fit: contain;
+    width :100%;
+    height : 100%;
+    border : 1px solid red;
+}
+
+.lightbox .fa-solid {
+    font-size : 40px;
+    color : #901C1C;
+    position : absolute;
+}
+
+.lightbox .fa-xmark {
+    right : 0;
+}
+
+.lightbox .fa-angle-left {
+    top : 50%
+}
+
+.lightbox .fa-angle-right {
+    top : 50%;
+    right : 0;
+}
