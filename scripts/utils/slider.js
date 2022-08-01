@@ -3,15 +3,16 @@ import MediaCard from "../views/media/Card.js";
 export default function slider(e, works) {
     e.preventDefault();
     
-    if (!document.querySelector('.lightbox')) {
+    if (!document.querySelector('.lightbox__card')) {
 
-        const $slider = createSlider(works);
+        const $slider = createSlides(works);
     }
 
-    toggleSlider();
+    // toggleSlider();
+    document.querySelector('.lightbox').classList.add('open');
 
-
-
+    // document.querySelectorAll('.media__link').forEach( media => media.addEventListener("click", (e) => slider(e, works)));
+    
 
 
 
@@ -19,36 +20,53 @@ export default function slider(e, works) {
 }
 
 
-function createSlider (works) {
+function createSlides (works) {
     let $slides = "";
-    const $body = document.querySelector("body");
+    const $slider = document.querySelector(".lightbox__slider");
+
 
 
     works.forEach(work => {
+
+        // Le probleme ici  : innerHTML fait disparaitre les event listener permettant de cliquer sur un media et douvrir le slider 
         const Media = new MediaCard(work);
-        $slides += Media.renderSlide();
+        let $slide = document.createElement("div");
+        $slide.setAttribute('class', "lightbox__slide");
+        $slide.innerHTML = Media.renderSlide();
+        $slider.appendChild($slide);
+
     });
-
-    const $slider = `<div class="lightbox modal">
-        <div class="lightbox__container">
-        <div class="lightbox__controls">
-            <i class="fa-solid fa-xmark"></i>
-            <i class="fa-solid fa-angle-left"></i>
-            <i class="fa-solid fa-angle-right"></i>
-        </div>
-        <div class="lightbox__slider">`
-            + $slides +
-        ` </div>
-        </div>
-    </div>
-    `
-    document.body.innerHTML += $slider;
-
+    
+    document.querySelector('.lightbox__controls .fa-xmark').addEventListener('click', () => closeSlider());
+    document.querySelector('.lightbox__controls .fa-angle-right').addEventListener('click', () => swipeRight());
 
 }
 
 
-function toggleSlider() {
-    document.querySelector('.lightbox').classList.toggle('open');
-    document.querySelector('.lightbox__controls .fa-xmark').addEventListener('click', () => {console.log("yo"); toggleSlider()});
+function closeSlider() {
+
+    document.querySelector('.lightbox').classList.remove('open');
+
+}
+
+function swipeRight() {
+    console.log("coucou");
+
+    const lightboxSliderStyle = window.getComputedStyle(document.querySelector(".lightbox__slider"));
+    let valueTranslateX = lightboxSliderStyle.getPropertyValue('transform');
+    console.log('la valeur de translate', valueTranslateX, valueTranslateX[19],  valueTranslateX[20]);
+
+    // check if last child 
+    // if not :
+    // 1 / get translate X value from lightbox__slider
+    // add -100% to property translate;
+    // add current class to active slide and remove class from former slide 
+}
+
+function swipeLeft() {
+    // check if first child 
+    // if not :
+    // 1 / get translate X value from lightbox__slider
+    // add 100% to property translate;
+    // add current class to active slide and remove class from former slide 
 }

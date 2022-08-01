@@ -61,10 +61,9 @@ async function displayWork(photographerWorks) {
 
   const $hearts = document.querySelectorAll(".media__likes i");
   const $medias = document.querySelectorAll('.media__link');
+  
   $hearts.forEach(heart => heart.addEventListener("click", e => addLike(e.target, works)));
-  $medias.forEach( media => media.addEventListener("click", (e) => slider(e, works)));
-    // David interessant fonction fléchée le this n'existe pas 
-  // $hearts.forEach(heart => heart.addEventListener('click', addLike(heart)));
+  $medias.forEach( media => media.addEventListener("click", e => slider(e, works)));
 }
 
 
