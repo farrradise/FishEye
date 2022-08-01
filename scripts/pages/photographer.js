@@ -64,6 +64,9 @@ async function displayWork(photographerWorks) {
   
   $hearts.forEach(heart => heart.addEventListener("click", e => addLike(e.target, works)));
   $medias.forEach( media => media.addEventListener("click", e => slider(e, works)));
+
+
+  
 }
 
 
@@ -85,7 +88,10 @@ function addLike($heart, works) {
   const isAlreadyLiked = $card.getAttribute('data-liked');
   const $recapLikes = document.querySelector(".recap__likes span");
 
-  
+  // DAVID
+  // const isAlreadyLiked = Boolean($card.getAttribute('data-liked') == "true");
+  // const isAlreadyLiked = !! $card.getAttribute('data-liked') == "true";
+  // A SIMPLIFIER
   works.forEach(work => {
     if (work.id == $cardID) {
         
@@ -103,6 +109,8 @@ function addLike($heart, works) {
     }
   });
 
+  // jusquICI (inutile)
+
 }
 
 
@@ -110,7 +118,6 @@ const start = async () => {
   photographerData = await getPhotographer;
   workData = await getWork;
   
-
 
   displayHeader(photographerData);
   displayRecap(photographerData, workData);
