@@ -52,12 +52,16 @@ async function displayWork(photographerWorks) {
   works.forEach(work => {
     const cardMedia = new Card(work)
     $portfolio.innerHTML += cardMedia.render();
-    
+  
   });
   
 
   $main.appendChild($portfolio)
-
+  if (document.querySelector("video.media__img")) {
+    // console.log("coucou", );
+ //   console.log('coucou');
+     document.querySelector('video.media__img').removeAttribute('controls');
+   }
 
   const $hearts = document.querySelectorAll(".media__likes i");
   const $medias = document.querySelectorAll('.media__link');
@@ -66,7 +70,7 @@ async function displayWork(photographerWorks) {
   $medias.forEach( media => media.addEventListener("click", e => slider(e, works)));
 
 
-  
+
 }
 
 

@@ -26,8 +26,8 @@ export default class Card  {
         return `      
             
             <div class="lightbox__card" data-slide="${this.media.id}">
-                ${this.media.name}
-                <h4 class="lightbox__title">${this.media.title}</h4>
+                ${this.media.name} 
+                <h4 class="lightbox__title ">${this.media.title}</h4>
             </div>
             `
 
