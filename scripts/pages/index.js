@@ -1,40 +1,37 @@
-// import Photographer from '../views/Photographer.js'
-// import Photograph from '../factories/Photograph.js'
+import Api from "../db/Database.js"
 import Card from '../views/photograph/Card.js'
 
-async function displayData(photographersData) {
 
-    const photographersSection = document.querySelector(".photographer_section");
+class App {
+    constructor() {
+        this.$photographersSection = document.querySelector('.photographer_section')       
+        this._api = new Api("./data/photographers.json");
+        this._photographers;
+    }
+ 
 
-    photographersData.forEach((photographerData) => {
+    async displayData() {       
+        this._photographers.forEach((photographerData) => {    
+            const photographerModel = new Card(photographerData);
+            const userCardDOM = photographerModel.render();
+            this.$photographersSection.innerHTML += userCardDOM;
+        });
+    }
 
-        const photographerModel = new Card(photographerData);
-        // const photographerModel = new Photograph(photographerData);
-        // console.log(photographerModel);
-        const userCardDOM = photographerModel.render();
-        photographersSection.innerHTML += userCardDOM;
-    });
-};
+    async start () {
+        const datas = await this._api.get();
+        this._photographers = datas.photographers; 
+        this.displayData();
+    }
+  }
+  
+  const app = new App()
+  app.start();
+  
+  
+  
+  
 
-
-
-const getPhotographers = fetch("./data/photographers.json")
-  .then((response) => response.json())
-  .then((value) => {
-    return value.photographers;
-  });
-
-
-
-
-const init = async () => {
-  const photographersData = await getPhotographers;
-  displayData(photographersData);
-};
-
-init();
-
-
-
-
-
+// console.log('voici le test')
+// const alldatas = new DB('./data/photographers.json');
+// console.log("coucou", alldatas.get());

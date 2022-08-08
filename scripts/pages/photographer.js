@@ -1,3 +1,4 @@
+import Db from "../db/Database.js"
 import MediaFactory from '../factories/MediasFactory.js'
 import Header from '../views/photograph/Header.js'
 import Recap from '../views/photograph/Recap.js'
@@ -58,8 +59,6 @@ async function displayWork(photographerWorks) {
 
   $main.appendChild($portfolio)
   if (document.querySelector("video.media__img")) {
-    // console.log("coucou", );
- //   console.log('coucou');
      document.querySelector('video.media__img').removeAttribute('controls');
    }
 
@@ -78,7 +77,6 @@ function displayRecap(photographerData, workData) {
   let likes = 0
   workData.forEach(singleWork => likes += singleWork.likes)
   const recap = new Recap(photographerData.price, likes);
-  // console.log(recap.render);
 
   $main.innerHTML += recap.render();
 
@@ -89,31 +87,19 @@ function addLike($heart, works) {
   const $card = $heart.closest(".media__card");
   const $heartNb = $heart.previousElementSibling;
   const $cardID = $card.getAttribute('data-id');
-  const isAlreadyLiked = $card.getAttribute('data-liked');
   const $recapLikes = document.querySelector(".recap__likes span");
+  const isAlreadyLiked = Boolean($card.getAttribute('data-liked') == "true");
 
-  // DAVID
-  // const isAlreadyLiked = Boolean($card.getAttribute('data-liked') == "true");
-  // const isAlreadyLiked = !! $card.getAttribute('data-liked') == "true";
-  // A SIMPLIFIER
-  works.forEach(work => {
-    if (work.id == $cardID) {
-        
-        if (isAlreadyLiked == "true") {
-          work.likes = -1;
-          $card.dataset.liked = "false"
-          $recapLikes.textContent = parseInt($recapLikes.textContent) -1;
-        } else {
-          work.likes = 1;
-          $card.dataset.liked = "true"
-          $recapLikes.textContent = parseInt($recapLikes.textContent) + 1;
-        }
-            
-        $heartNb.innerHTML = work.likes;
-    }
-  });
-
-  // jusquICI (inutile)
+  if (isAlreadyLiked) {
+    $card.dataset.liked = "false"
+    $recapLikes.textContent = parseInt($recapLikes.textContent) -1;
+    $heartNb.innerHTML = parseInt($heartNb.textContent) -1;
+  } else {
+    $card.dataset.liked = "true"
+    $recapLikes.textContent = parseInt($recapLikes.textContent) + 1;
+    $heartNb.innerHTML = parseInt($heartNb.textContent) +1;
+  }
+   
 
 }
 
