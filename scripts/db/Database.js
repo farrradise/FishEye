@@ -5,17 +5,23 @@ export default class Database {
      */
     constructor(url) {
         this._url = url
+        if (Database.exists) {
+            return Database.instance
+        } 
+
+        Database.instance = this
+        Database.exists = true
+
+        return this
     }
 
     async get() {
-        console.log('test', this)
         return fetch(this._url)
             .then(res => res.json())
             .then(res => {
-                console.log('coucou test', res);
                 return res;
             })
-            // .catch(err => console.log('an error occurs', err))
+            .catch(err => console.log('an error occurs', err))
     }
 
 
