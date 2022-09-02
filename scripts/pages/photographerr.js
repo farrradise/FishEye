@@ -1,11 +1,12 @@
-import Api from "../db/Database.js"
+import Db from "../db/Database.js"
 import MediaFactory from '../factories/MediasFactory.js'
 import Header from '../views/photograph/Header.js'
 import Recap from '../views/photograph/Recap.js'
 import Card from '../views/media/Card.js'
 import Filter from '../views/Filter.js'
 import {closeModal, displayModal, checkDatas} from '../utils/contactForm.js'
-import slider from '../utils/slider.js'
+// import slider from '../utils/slider.js'
+import Slider from "../utils/slider.js"
 
 
 
@@ -66,14 +67,21 @@ async function displayWork(photographerWorks) {
   const $medias = document.querySelectorAll('.media__link');
   
   $hearts.forEach(heart => heart.addEventListener("click", e => addLike(e.target, works)));
-  $medias.forEach( media => media.addEventListener("click", e => slider(e, works)));
+  $medias.forEach( media => media.addEventListener("click", e => { 
+    e.preventDefault(); 
+    // slider(e.target.closest('.media__card').getAttribute('data-id'), works)
+      // a mettre dans photographerrr
+      // console.log("coucou", e.target.closest('.media__card').getAttribute('data-id'));
+    const mySlider = new Slider(e.target.closest('.media__card').getAttribute('data-id'), works);
+    mySlider.main();
+  }));
 
 
 
 }
 
 
-function diisplayRecap(photographerData, workData) {
+function displayRecap(photographerData, workData) {
   let likes = 0
   workData.forEach(singleWork => likes += singleWork.likes)
   const recap = new Recap(photographerData.price, likes);
@@ -104,6 +112,23 @@ function addLike($heart, works) {
 }
 
 
+const start = async () => {
+  photographerData = await getPhotographer;
+  workData = await getWork;
+  
+
+  displayHeader(photographerData);
+  displayRecap(photographerData, workData);
+  displayFilter();
+  displayWork(workData);
+
+
+  // Events
+  document.querySelector(".contact_button").addEventListener("click", () => displayModal());
+  document.querySelector(".modal__closeBtn").addEventListener("click", () => closeModal());
+  document.querySelector('.modal__submit').addEventListener("click", (e) => checkDatas(e));
+
+};
 
 function tri(e) {
 
@@ -146,69 +171,25 @@ function tri(e) {
 }
 
 
-
-
-
-
-
-class App {
-  constructor() {
-    this.$main = document.querySelector("#main");
-    this._api = new Api("./data/photographers.json");
-    this._id = parseInt((new URL(document.location)).searchParams.get('id')); 
-    this._photographer;
-    this._allMedias;
-    this._datas;
-    this._relatedMedias;
-  }
-
-
-  async start () {
-    const datas = await this._api.get();
-    this._datas = datas;
-    this._allMedias = datas.media;   
-    const photographerData = await this.getPhotographer();
-    this._photographer = await this.getPhotographer()
-    const relatedMedias = await this.getRelatedWork(); 
-
-    
-    console.log(photographerData);
-    displayHeader(photographerData);
-    this.displayRecap();
-    displayFilter();
-    displayWork(relatedMedias);
-  
-  
-    // Events
-    document.querySelector(".contact_button").addEventListener("click", () => displayModal());
-    document.querySelector(".modal__closeBtn").addEventListener("click", () => closeModal());
-    document.querySelector('.modal__submit').addEventListener("click", (e) => checkDatas(e));
-  }
-
-  async displayRecap() {
-    // photographerData
-    console.log(this._photographer)
-    let likes = 0
-    this._relatedMedias.forEach(singleWork => likes += singleWork.likes)
-    const recap = new Recap(this._photographer.price, likes);
-  
-    $main.innerHTML += recap.render();
-  
-  }
-  
-  async getPhotographer () {
-    const selectedPhotographer = this._datas.photographers.filter(photographer => photographer.id == this._id); 
+const getPhotographer = fetch("./data/photographers.json")
+  .then((response) => response.json())
+  .then((value) => {
+    const selectedPhotographer = value.photographers.filter(photographer => photographer.id == getID()); 
     return selectedPhotographer[0];
-  }
-
-  async getRelatedWork() {
-    return this._datas.media.filter(singleMedia => singleMedia.photographerId == this._id);
-  }
-}
+  });
 
 
+const getWork = fetch("./data/photographers.json")
+.then((response) => response.json())
+.then((value) => {
+  return value.media.filter(singleMedia => singleMedia.photographerId == getID());
+});
 
 
-const app = new App();
-app.start();
+
+
+
+
+
+start();
 

@@ -85,15 +85,14 @@ export default class Slider {
 
         let formerIndex = this._works.findIndex(work => work._id == this._currentID );
         let $formerSlide = document.querySelector(`.lightbox__card[data-slide="${this._currentID}"]`).parentNode;
-        let currentIndex = this._works.findIndex(work => work._id == this._currentID );
 
 
 
         // Je trouve l'ID de la prochaine slide, détermine sa position dans le tableau this._works et la crée via la fonction createslide()
-        if (currentIndex == 0) {
+        if (formerIndex == 0) {
             this.createSlide(this._works[this._works.length-1]);
         } else {
-            this.createSlide(this._works[currentIndex-1]);
+            this.createSlide(this._works[formerIndex-1]);
         }
 
         $formerSlide.classList.add('swipeToRight');
