@@ -9,7 +9,4 @@ export default class Photograph {
         this.price = data.price;
     }
     
-
-    // David, est-il nécessaire / bonne pratique de mettre des assesseurs ? get set ? pk 
-
 }

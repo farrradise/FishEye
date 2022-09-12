@@ -10,11 +10,6 @@ import Slider from '../utils/slider.js'
 
 
 const $main = document.querySelector("#main");
-// let workData;
-// let works;
-
-
-
 
 
 
@@ -40,10 +35,12 @@ class App {
   
     if (isAlreadyLiked) {
       $card.dataset.liked = "false"
+      $heart.setAttribute('aria-checked', false);
       $recapLikes.textContent = parseInt($recapLikes.textContent) -1;
       $heartNb.innerHTML = parseInt($heartNb.textContent) -1;
     } else {
       $card.dataset.liked = "true"
+      $heart.setAttribute('aria-checked', true);
       $recapLikes.textContent = parseInt($recapLikes.textContent) + 1;
       $heartNb.innerHTML = parseInt($heartNb.textContent) +1;
     }
@@ -116,8 +113,15 @@ class App {
   
     const $hearts = document.querySelectorAll(".media__likes i");
     const $medias = document.querySelectorAll('.media__link');
-    // $hearts.forEach(heart => heart.addEventListener("click", e => console.log(e.target)));    
-    $hearts.forEach(heart => heart.addEventListener("click", e => this.addLike(e.target)));
+
+    // ACCESSIBILITE
+    $hearts.forEach($heart => $heart.addEventListener("keyup", event => {
+        let KEY = event.code; 
+        if (KEY === "Enter" || KEY === "Space") {
+          this.addLike($heart);      
+        }
+    }));
+    $hearts.forEach(heart => heart.addEventListener("click", e => {console.log("this" , this), this.addLike(e.target)}));
   
     $medias.forEach( media => media.addEventListener("click", e => { 
       e.preventDefault(); 
@@ -135,7 +139,6 @@ class App {
     // Pour ouvrir le dropdown filter
     const $triBtn = document.querySelector(".filter__choice");
     $triBtn.addEventListener("click", () => this.tri());
-  
 
   }
   
@@ -154,9 +157,22 @@ class App {
     document.querySelector('.filter__options').classList.toggle("open");
     document.querySelector('.filter__button').classList.toggle("open");
     
+    if (document.querySelector('.filter__button').classList.contains('open')) {
+      document.querySelectorAll('.filter__option').forEach(option => option.setAttribute("tabindex", 0));
+    } else {
+      document.querySelectorAll('.filter__option').forEach(option => option.setAttribute("tabindex", -1));
+    }
 
     let triOption;
 
+
+      // ACCESSIBILITE
+    document.querySelectorAll('.filter__option').forEach(filterOption => filterOption.addEventListener("keyup", event => {
+      let KEY = event.code; 
+      if (KEY === "Enter" || KEY === "Space") {
+        filterOption.click();    
+      }
+    }));
     document.querySelectorAll('.filter__option').forEach(filterOption => filterOption.addEventListener("click", ()=> {
       triOption = filterOption.dataset.value;
       let workData = this._relatedMedias;

@@ -24,6 +24,11 @@
     border-radius: 5px;
 }
 
+.filter__button:hover, .filter__button:focus {
+    background-color: #D3573C;
+    color : white;
+}
+
 
 .filter__button i {
     z-index: 5;
@@ -66,7 +71,7 @@
     
 }
 
-.filter__option:hover {
+.filter__option:hover, .filter__option:focus {
     background-color : #D3573C;
 }
 

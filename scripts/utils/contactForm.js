@@ -1,6 +1,7 @@
 function displayModal() {
     const $modal = document.getElementById("contact_modal");
     $modal.classList.add("open");
+    $modal.querySelector('input').focus();
     setTimeout(() => $modal.querySelector(".modal__container").classList.add("open"), 0);
 }
 

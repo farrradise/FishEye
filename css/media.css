@@ -38,8 +38,13 @@
     overflow: hidden;
 }
 
+.media__link:hover .media__img,.media__link:focus .media__img {
+    width : 110%;
+}
+
 .media__img {
     width : 100%;
+    transition: width 0.3s ease-in;
     height : 100%;
     object-fit: cover;
     background-color : grey;

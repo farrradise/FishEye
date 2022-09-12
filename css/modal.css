@@ -100,3 +100,7 @@ form input, form textarea {
 .modal__message textarea{
     height : 140px;
 }
+
+input:focus {
+    border: 3px solid #D3573C!important;
+}

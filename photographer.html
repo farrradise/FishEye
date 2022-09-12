@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     
@@ -10,9 +10,13 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html" alt="FishEye Home page">
+        <img src="assets/images/logo.png" alt="lien vers site via logo" class="logo" />
+      </a> 
+
     </header>
 
+    
 
     <main id="main">
     </main>
@@ -37,7 +41,7 @@
 					</div>
           <div class="modal__email">
 						<label for="email">Email
-              <input id="email" type="email"/>
+              <input id="email" type="email" aria-labelledby="email" aria-describedby="xxx@xxx.xx" placeholder="nom@gmail.com"/>
             </label>
 					</div>
           <div class="modal__message">
@@ -46,7 +50,7 @@
               </textarea>
             </label>
 					</div>
-          <button class="modal__submit contact_button">Envoyer</button>
+          <button aria-label="Envoyer le formulaire de contact" class="modal__submit contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>

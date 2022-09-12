@@ -42,3 +42,8 @@
     cursor: pointer;
 }
 
+.contact_button:hover, .contact_button:focus {
+    background-color: #D3573C;
+    color : white;
+}
+

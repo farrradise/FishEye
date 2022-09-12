@@ -9,6 +9,6 @@ export default class Image extends Media {
     }
 
     get name() {
-        return `<img class="media__img" src="assets/images/works/${this._name}"/>`
+        return `<img class="media__img" alt="Décrire image avec alternative au média pertinent" src="assets/images/works/${this._name}"/>`
     }
 }

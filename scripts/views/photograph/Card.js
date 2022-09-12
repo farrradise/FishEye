@@ -10,8 +10,8 @@ export default class Card extends Photograph {
 
  render() {
     const photographerCard = `<article class="photographer" id="${this.id}">
-        <a class="photographer__clickable" href="photographer.html?id=${this.id}" alt="${this.name}">
-            <img src="assets/photographers/${this.portrait}">
+        <a class="photographer__clickable" href="photographer.html?id=${this.id}">
+            <img src="assets/photographers/${this.portrait}"  alt="Photographie de profil de ${this.name}">
             <h2 class="photographer__name">${this.name}</h2>
         </a>
         <p class="photographer__details">

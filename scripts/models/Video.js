@@ -9,7 +9,7 @@ export default class Video extends Media {
     }
 
     get name() {
-        return `<video controls class="media__img"  type=video/mp4/>
+        return `<video title="${this._title}" controls class="media__img"  type=video/mp4/>
             <source src="assets/images/works/${this._name}" type="video/mp4">
         </video>`
     }
