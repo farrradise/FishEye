@@ -67,6 +67,11 @@
     text-align: center;
 }
 
+.modal header button {
+    border : none;
+    background-color: inherit;
+}
+
 form {
     display: flex;
     width: 100%;
@@ -78,6 +83,7 @@ form label {
     color: #312E2E;
     font-size: 32px;
     width : 100%;
+    position :relative;
 }
 
 form div {
@@ -103,4 +109,24 @@ form input, form textarea {
 
 input:focus {
     border: 3px solid #D3573C!important;
+}
+
+label.error input {
+    background-color : red;
+    color : white;
+}
+label.error:not([for="message"])::after {
+    content : "3 caractères minimum";
+    position :absolute;
+    /* top : 0; */
+    bottom : 1px;
+    left : 12px;
+    font-size : 11px;
+    /* display : none; */
+    font-weight: 700;
+    color : white;
+}
+
+label.error[for="email"]::after {
+    content : "Merci de renseigner une adresse mail valide type prénom@gmail.com";
 }

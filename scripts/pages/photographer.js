@@ -70,7 +70,7 @@ class App {
 
   }
 
-  async displayRecap() {
+  displayRecap() {
     let likes = 0
     this._relatedMedias.forEach(singleWork => likes += singleWork.likes)
     const recap = new Recap(this._photographer.price, likes);
@@ -121,7 +121,7 @@ class App {
           this.addLike($heart);      
         }
     }));
-    $hearts.forEach(heart => heart.addEventListener("click", e => {console.log("this" , this), this.addLike(e.target)}));
+    $hearts.forEach(heart => heart.addEventListener("click", e => this.addLike(e.target)));
   
     $medias.forEach( media => media.addEventListener("click", e => { 
       e.preventDefault(); 

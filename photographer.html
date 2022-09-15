@@ -26,31 +26,31 @@
 			<div class="modal__container">
 				<header>
           <h2>Contactez-moi <span></span></h2>
-          <img src="assets/icons/close.svg" class="modal__closeBtn"/>
+          <button aria-label="fermer le formulaire de contact" class="modal__closeBtn" tabindex="6"><img src="assets/icons/close.svg" /></button>
         </header>
 				<form class="modal__form">
 					<div class="modal__firstName">
 						<label for="firstName">Prénom
-						  <input id="firstName" type="text" />
+						  <input aria-required=true tabindex="1" id="firstName" type="text" />
             </label>
 					</div>
           <div  class="modal__lastName">
 						<label for="lastName">Nom
-              <input id="lastName" type="text"/>
+              <input aria-required=true tabindex="2" id="lastName" type="text"/>
             </label>
 					</div>
           <div class="modal__email">
 						<label for="email">Email
-              <input id="email" type="email" aria-labelledby="email" aria-describedby="xxx@xxx.xx" placeholder="nom@gmail.com"/>
+              <input aria-required=true tabindex="3" id="email" type="email" aria-labelledby="email" aria-describedby="xxx@xxx.xx" placeholder="nom@gmail.com"/>
             </label>
 					</div>
           <div class="modal__message">
 						<label for="message">Votre Message
-              <textarea id="message" type="text">
+              <textarea aria-required=true tabindex="4" id="message" type="text">
               </textarea>
             </label>
 					</div>
-          <button aria-label="Envoyer le formulaire de contact" class="modal__submit contact_button">Envoyer</button>
+          <button tabindex="5" aria-label="Envoyer le formulaire de contact" class="modal__submit contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>

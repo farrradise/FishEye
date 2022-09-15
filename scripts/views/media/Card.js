@@ -15,7 +15,7 @@ export default class Card  {
             <div class="media__details">
                 <h4 class="media__title">${this.media.title}</h4>
                 <div class="media__likes">
-                    <span aria-label="nombre de j'aime">${this.media.likes}</span>
+                    <span  aria-label="${this.media.likes} mentions 'j'aime' sur cette photo"><span aria-hidden="true">${this.media.likes}</span></span>
                     <i class="fa-solid fa-heart" aria-hidden="false" role="checkbox"  aria-checked="false" tabindex="0" title="Bouton pour aimer la photo" ></i>
                 </div>
             </div>
