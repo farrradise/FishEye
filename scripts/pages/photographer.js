@@ -29,7 +29,6 @@ class App {
 
     const $card = $heart.closest(".media__card");
     const $heartNb = $heart.previousElementSibling;
-    const $cardID = $card.getAttribute('data-id');
     const $recapLikes = document.querySelector(".recap__likes span");
     const isAlreadyLiked = Boolean($card.getAttribute('data-liked') == "true");
   
@@ -65,9 +64,6 @@ class App {
   
     // Events
     document.querySelector(".contact_button").addEventListener("click", () => displayModal());
-    document.querySelector(".modal__closeBtn").addEventListener("click", () => closeModal());
-    document.querySelector('.modal__submit').addEventListener("click", (e) => checkDatas(e));
-
   }
 
   displayRecap() {
@@ -85,7 +81,7 @@ class App {
     $main.innerHTML += header;
 
 
-};
+}
 
   displayWork() {
 
@@ -121,6 +117,7 @@ class App {
           this.addLike($heart);      
         }
     }));
+    
     $hearts.forEach(heart => heart.addEventListener("click", e => this.addLike(e.target)));
   
     $medias.forEach( media => media.addEventListener("click", e => { 
@@ -152,7 +149,7 @@ class App {
   }
 
 
-  async tri(e) {
+  async tri() {
 
     document.querySelector('.filter__options').classList.toggle("open");
     document.querySelector('.filter__button').classList.toggle("open");

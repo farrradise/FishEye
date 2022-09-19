@@ -6,9 +6,10 @@ export default class Slider {
         this._currentID = currentId;
 
         // dom elements
-        this.$closeIcon = document.querySelector(".fa-xmark");
-        this.$nextIcon = document.querySelector('.lightbox__controls .fa-angle-right')
-        this.$prevIcon = document.querySelector('.lightbox__controls .fa-angle-left')
+        this.$body = document.querySelector('body');
+        this.$mainWrapper = document.querySelector('body > div');
+        this.$modal = document.querySelector('#lightbox');
+        this.$controls = document.querySelector('.lightbox__controls')
     }
 
     main () {
@@ -18,15 +19,60 @@ export default class Slider {
         this.createSlide(item);
 
         document.querySelector('.lightbox').classList.add('open');
+        
 
-        // Events listener for navigation
-        this.$closeIcon.addEventListener("click", () => this.close());
-        this.$nextIcon.addEventListener('click', (e) => { e.stopImmediatePropagation(), this.next()});
-        this.$prevIcon.addEventListener('click', (e) => { e.stopImmediatePropagation(), this.prev()});
+        this.$mainWrapper.setAttribute('aria-hidden', true);
+        this.$modal.setAttribute('aria-hidden', false);
+        this.$modal.style.display = 'block';
+
+        this.controls();
     
     }
 
 
+    controls() {
+
+        
+        this.$controls.innerHTML += `<i role="button" tabindex="1" aria-label="Fermer la lightbox" class="fa-solid fa-xmark"></i>
+        <i role="button" tabindex="2" aria-label="Voir le média précédent" class="fa-solid fa-angle-left"></i>
+        <i role="button" tabindex="3" aria-label="Voir le média suivant" class="fa-solid fa-angle-right"></i>`;
+        
+
+        this.$closeIcon = document.querySelector(".fa-xmark");
+        this.$nextIcon = document.querySelector('.lightbox__controls .fa-angle-right');
+        this.$prevIcon = document.querySelector('.lightbox__controls .fa-angle-left');
+
+        this.$closeIcon.addEventListener("click", () => this.close());
+        this.$nextIcon.addEventListener('click', (e) => { e.stopImmediatePropagation(), this.next()});
+        this.$prevIcon.addEventListener('click', (e) => { e.stopImmediatePropagation(), this.prev()});
+
+        this.$closeIcon.focus();
+        let firstClick = true;
+
+        this.$modal.addEventListener("keyup", event => {
+            let KEY = event.code; 
+
+            if (KEY === "Escape") {
+              this.close();    
+            } else if (KEY === "ArrowLeft") {
+              this.prev(); 
+            } else if (KEY === "ArrowRight") {
+              this.next();  
+            } else if (KEY === "Enter" || KEY === "Space") {
+                if (!firstClick && document.activeElement == this.$closeIcon) {
+                    this.close();
+                } else if (document.activeElement == this.$nextIcon) {
+                    this.next();
+                } else if (document.activeElement == this.$prevIcon) {
+                    this.prev();
+                }
+                
+            }
+            firstClick = false;
+
+        });
+        
+    }
 
     createSlide(item , prev) {
 
@@ -46,18 +92,23 @@ export default class Slider {
             document.querySelector(".lightbox__slider").insertBefore($slide, document.querySelector(".lightbox__slider").firstChild);
         }
 
+
+
     }
 
     close () {
         document.querySelector('.lightbox').classList.remove('open');
         document.querySelectorAll('.media__card.active').forEach(element => element.classList.remove('active'));
         document.querySelectorAll('.lightbox__slide').forEach($slide => $slide.remove());
+        
+        this.$mainWrapper.setAttribute('aria-hidden', false);
+        this.$modal.removeAttribute('aria-hidden');
+        this.$modal.style.display ='none';
+        this.$controls.innerHTML ="";
    
     }
 
     next () {
-
-
         this._currentID = document.querySelector('.media__card.active').dataset.id;
 
         document.querySelector('.media__card.active').classList.remove("active")
@@ -76,7 +127,6 @@ export default class Slider {
 
         setTimeout( ()=> $formerSlide.remove(), 1200)
     }
-
 
     prev () {
 

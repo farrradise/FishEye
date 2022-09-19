@@ -13,7 +13,7 @@ export default class Header extends Photograph {
         const header = `<section class="photograph-header">
             <div>
             
-                <h2 class="photographer__name">${this.name}</h2>
+                <h1 class="photographer__name">${this.name}</h1>
                 <p class="photographer__details">
                     <span class="photographer__hometown">${this.city}, ${this.country}</span>
                     <span class="photographer__tagline">${this.tagline}</span>

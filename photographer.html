@@ -16,57 +16,56 @@
 
     </header>
 
-    
+    <div>
+      <main id="main">
+      </main>
+      
+      
+      <section class="modal" id="contact_modal" role="form">
+        <div class="modal__container">
+          <header aria-label="En tête du formulaire de contact">
+            <h2>Contactez-moi <span></span></h2>
+            <button aria-label="fermer le formulaire de contact" class="modal__closeBtn" tabindex="6"><img src="assets/icons/close.svg" /></button>
+          </header>
+          <form class="modal__form">
+            <div class="modal__firstName">
+              <label aria-labelledby="firstName"  for="firstName">Prénom
+                <input aria-required=true tabindex="1" id="firstName" type="text" />
+              </label>
+            </div>
+            <div  class="modal__lastName">
+              <label aria-labelledby="lastName"  for="lastName">Nom
+                <input aria-required=true tabindex="2" id="lastName" type="text"/>
+              </label>
+            </div>
+            <div class="modal__email">
+              <label for="email" aria-labelledby="email" >Email
+                <input aria-required=true tabindex="3" id="email" type="email" aria-label="email"  placeholder="nom@gmail.com"/>
+              </label>
+            </div>
+            <div class="modal__message">
+              <label aria-labelledby="message" for="message">Votre Message
+                <textarea aria-required=true tabindex="4" id="message" type="text">
+                </textarea>
+              </label>
+            </div>
+            <button tabindex="5" aria-label="Envoyer le formulaire de contact" class="modal__submit contact_button">Envoyer</button>
+          </form>
+        </div>
+      </section>
+  
+    </div>
 
-    <main id="main">
-    </main>
-    
-    
-    <div class="modal" id="contact_modal">
-			<div class="modal__container">
-				<header>
-          <h2>Contactez-moi <span></span></h2>
-          <button aria-label="fermer le formulaire de contact" class="modal__closeBtn" tabindex="6"><img src="assets/icons/close.svg" /></button>
-        </header>
-				<form class="modal__form">
-					<div class="modal__firstName">
-						<label for="firstName">Prénom
-						  <input aria-required=true tabindex="1" id="firstName" type="text" />
-            </label>
-					</div>
-          <div  class="modal__lastName">
-						<label for="lastName">Nom
-              <input aria-required=true tabindex="2" id="lastName" type="text"/>
-            </label>
-					</div>
-          <div class="modal__email">
-						<label for="email">Email
-              <input aria-required=true tabindex="3" id="email" type="email" aria-labelledby="email" aria-describedby="xxx@xxx.xx" placeholder="nom@gmail.com"/>
-            </label>
-					</div>
-          <div class="modal__message">
-						<label for="message">Votre Message
-              <textarea aria-required=true tabindex="4" id="message" type="text">
-              </textarea>
-            </label>
-					</div>
-          <button tabindex="5" aria-label="Envoyer le formulaire de contact" class="modal__submit contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-
-    <div class="lightbox modal">
+ 
+    <section role="dialog" id="lightbox" class="lightbox modal">
       <div class="lightbox__container">
-        <div class="lightbox__controls">
-            <i class="fa-solid fa-xmark"></i>
-            <i class="fa-solid fa-angle-left"></i>
-            <i class="fa-solid fa-angle-right"></i>
+        <div class="lightbox__controls" >
         </div>
         <div class="lightbox__slider">
           
         </div>
       </div>
-  </div>
+    </section>
 
 
     <script src="https://kit.fontawesome.com/0fa88dc263.js" crossorigin="anonymous"></script>
