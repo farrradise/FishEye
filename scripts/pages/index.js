@@ -28,10 +28,4 @@ class App {
   const app = new App()
   app.start();
   
-  
-  
-  
 
-// console.log('voici le test')
-// const alldatas = new DB('./data/photographers.json');
-// console.log("coucou", alldatas.get());
